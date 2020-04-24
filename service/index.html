@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apps Script POC</title>
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+
+    <script>
+        function getUrlParameter(sParam) {
+            var sPageURL = window.location.search.substring(1),
+            sURLVariables = sPageURL.split('&'),
+            sParameterName,
+            i;
+
+            for (i = 0; i < sURLVariables.length; i++) {
+                sParameterName = sURLVariables[i].split('=');
+
+                if (sParameterName[0] === sParam) {
+                    return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+                }
+            }
+    };
+    </script>
+
+    <script>
+        $( document ).ready(function() {
+            $.get( "https://<NGROK_URL>/", function( data ) {
+                var redirect_uri =  getUrlParameter('redirect_uri');
+                var state = getUrlParameter('state');
+                var url = redirect_uri + '?state=' + state + '&_success=true'
+                console.log('data loaded: ' + JSON.stringify(data));
+                window.location.href = url;
+            });
+        });
+    </script>
+
+</head>
+<body>
+</body>
+</html>
