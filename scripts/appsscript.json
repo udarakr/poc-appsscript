@@ -1,0 +1,37 @@
+{
+    "timeZone": "Asia/Colombo",
+    "dependencies": {
+      "enabledAdvancedServices": [{
+        "userSymbol": "Gmail",
+        "serviceId": "gmail",
+        "version": "v1"
+      }]
+    },
+    "exceptionLogging": "STACKDRIVER",
+    "oauthScopes": ["https://www.googleapis.com/auth/gmail.addons.current.action.compose", "https://www.googleapis.com/auth/script.external_request", "https://www.googleapis.com/auth/gmail.addons.current.message.readonly", "https://www.googleapis.com/auth/gmail.addons.execute", "https://www.googleapis.com/auth/script.locale"],
+    "urlFetchWhitelist": ["<NGROK_URL>"],
+    "runtimeVersion": "DEPRECATED_ES5",
+    "addOns": {
+      "common": {
+        "name": "TestLimits",
+        "logoUrl": "https://maps.gstatic.com/mapfiles/ms2/micons/camera.png",
+        "layoutProperties": {
+          "primaryColor": "#4986e7",
+          "secondaryColor": "#4986e7"
+        },
+        "useLocaleFromApp": true,
+        "homepageTrigger": {
+          "runFunction": "onHomepage",
+          "enabled": true
+        },
+        "openLinkUrlPrefixes": ["*"]
+      },
+      "gmail": {
+        "contextualTriggers": [{
+          "unconditional": {
+          },
+          "onTriggerFunction": "doGet"
+        }]
+      }
+    }
+  }
